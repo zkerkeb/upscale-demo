@@ -1,0 +1,17 @@
+version: '3'
+services:
+  app:
+    build: .
+    expose:
+      - "3000"
+    environment:
+      - NODE_ENV=production
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/opt/homebrew/etc/nginx/nginx.conf
+    depends_on:
+      - app
